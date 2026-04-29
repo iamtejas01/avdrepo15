@@ -6,12 +6,14 @@ on:
 
 jobs:
     extract-data:
-        runs_on: ubuntu-latest
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout Code
               uses: actions/checkout@v2
             - name: show python version
-            run: python --version
+              run: python --version
+
+
 
 
 
