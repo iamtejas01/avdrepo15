@@ -1,22 +1,31 @@
 name: run python program with dependencies
+
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    extract-data:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Code
-              uses: actions/checkout@v2
-            - name: show python version
-              run: python --version
-            - name: installing dependencies
-              run: pip install pandas -r requirements.txt 
-            - name: run python program
-              run: python extract_data.py
+  extract-data:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Show Python version
+        run: python --version
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install pandas -r requirements.txt
+
+      - name: Run python program
+        run: python extract_data.py
 
 
 
