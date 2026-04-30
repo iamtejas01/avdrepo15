@@ -1,4 +1,4 @@
-name: run python program with dependencies
+name: quality gate check
 
 on:
   push:
@@ -6,26 +6,26 @@ on:
       - main
 
 jobs:
-  extract-data:
+  ci_job:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: installing dependencies
+        run: pip install -r requirements.txt
+      - name: run test and enforce coverage
+        run: |
+          pytest --cov=calc --cov-report=term     
 
-      - name: Show Python version
-        run: python --version
+  cd_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
 
-      - name: Setup Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+      - name: print message
+        run: echo "deployment done..."
 
-      - name: Install dependencies
-        run: pip install pandas -r requirements.txt
-
-      - name: Run python program
-        run: python extract_data.py
 
 
 
