@@ -11,4 +11,4 @@ def test_mul():
     assert mul(2, 3) == 6
     
 def test_div():
-    assert add(10, 2) == 5        
+    assert div(10, 2) == 5        
